@@ -5,20 +5,20 @@ function lcf_render_form() {
     
    
     <form class="lightweight-contact-form">
-        <div class="lcf-message"></div>
+        <div class="form-message"></div>
     <div class="form-group">
         <label>Name</label>
-        <input type="text" name="name" required>
+        <input type="text" name="name">
     </div>
 
     <div class="form-group">
         <label>Email</label>
-        <input type="email" name="email" required>
+        <input type="email" name="email">
     </div>
 
     <div class="form-group">
         <label>Message</label>
-        <textarea name="message" required></textarea>
+        <textarea name="message"></textarea>
     </div>
      <?php wp_nonce_field('lcf_form_action', 'lcf_nonce'); ?>
 

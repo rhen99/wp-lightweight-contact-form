@@ -69,19 +69,18 @@
 
 /* Success / error messages */
 .lightweight-contact-form .form-message {
-  margin-top: 10px;
+  margin: 10px 0;
+  padding: 5px;
   font-size: 14px;
 }
 
 .lightweight-contact-form .success {
-  padding: 10px;
   border-radius: 6px;
   background-color: #bef8d3;
   color: #16a34a;
 }
 
 .lightweight-contact-form .error {
-  padding: 10px;
   border-radius: 6px;
   background-color: #fee2e2;
   color: #dc2626;

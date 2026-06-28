@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
   const form = document.querySelector("form");
-  const messageBox = document.querySelector(".lcf-message");
+  const messageBox = document.querySelector(".form-message");
   const submitButton = form.querySelector("button[type='submit']");
 
   form.addEventListener("submit", function (e) {
@@ -21,16 +21,23 @@ document.addEventListener("DOMContentLoaded", function () {
       .then((data) => {
         if (data.success) {
           messageBox.textContent = data.data.message;
-          messageBox.className = "success";
+          messageBox.className = "form-message success";
           form.reset();
         } else {
-          messageBox.textContent = data.data.message || "Something went wrong";
-          messageBox.className = "error";
+          const errors = JSON.parse(data.data.message);
+          const errorList = document.createElement("ul");
+          errors.forEach((error) => {
+            const listItem = document.createElement("li");
+            listItem.textContent = error;
+            errorList.appendChild(listItem);
+          });
+          messageBox.appendChild(errorList);
+          messageBox.className = "form-message error";
         }
       })
       .catch(() => {
         messageBox.textContent = "Network error. Please try again.";
-        messageBox.className = "error";
+        messageBox.className = "form-message error";
       })
       .finally(() => {
         submitButton.disabled = false;
