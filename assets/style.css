@@ -1,0 +1,88 @@
+/* Container */
+.lightweight-contact-form {
+  max-width: 500px;
+  margin: 20px auto;
+  padding: 20px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  background: #ffffff;
+  font-family: Arial, sans-serif;
+}
+
+/* Form fields wrapper */
+.lightweight-contact-form .form-group {
+  margin-bottom: 15px;
+}
+
+/* Labels */
+.lightweight-contact-form label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+/* Inputs & textarea */
+.lightweight-contact-form input,
+.lightweight-contact-form textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 14px;
+  transition:
+    border 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+/* Focus state */
+.lightweight-contact-form input:focus,
+.lightweight-contact-form textarea:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+}
+
+/* Textarea specific */
+.lightweight-contact-form textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+/* Button */
+.lightweight-contact-form button {
+  display: inline-block;
+  background: #3b82f6;
+  color: #fff;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+/* Button hover */
+.lightweight-contact-form button:hover {
+  background: #2563eb;
+}
+
+/* Success / error messages */
+.lightweight-contact-form .form-message {
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+.lightweight-contact-form .success {
+  padding: 10px;
+  border-radius: 6px;
+  background-color: #bef8d3;
+  color: #16a34a;
+}
+
+.lightweight-contact-form .error {
+  padding: 10px;
+  border-radius: 6px;
+  background-color: #fee2e2;
+  color: #dc2626;
+}
