@@ -35,6 +35,10 @@
     border 0.2s ease,
     box-shadow 0.2s ease;
 }
+.lightweight-contact-form input.error,
+.lightweight-contact-form textarea.error {
+  border: 1px solid #dc2626;
+}
 
 /* Focus state */
 .lightweight-contact-form input:focus,
@@ -85,6 +89,16 @@
   border-radius: 6px;
   background-color: #fee2e2;
   color: #dc2626;
+}
+.lightweight-contact-form button.loading {
+  opacity: 0.6;
+  pointer-events: none;
+}
+.error-message {
+  color: red;
+  font-size: 12px;
+  display: block;
+  margin-top: 4px;
 }
 .required {
   color: #dc2626;

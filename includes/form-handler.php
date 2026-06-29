@@ -13,7 +13,11 @@ function lcf_ajax_handler() {
 
     $errors = lcf_validate_form($name, $email, $message);
     if (!empty($errors)) {
-        wp_send_json_error(['message' => json_encode($errors)]);
+        wp_send_json_error([
+            'errors' => $errors,
+            'message' => 'Please fix the errors below.'
+    ]);
+
     }
 
     $sent = wp_mail(

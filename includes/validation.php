@@ -2,11 +2,16 @@
 
 function lcf_validate_form($name, $email, $message) {
     $errors = [];
-    if(empty($name) || empty($email) || empty($message)) {
-        $errors[] = "Fill in all required fields.";
+    if (empty($name)) {
+        $errors['name'] = 'Name is required.';
     }
-    if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $errors[] = "Invalid email address.";
+    if (empty($email)) {
+        $errors['email'] = 'Email is required.';
+    } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $errors['email'] = 'Invalid email address.';
+    }
+    if (empty($message)) {
+        $errors['message'] = 'Message is required.';
     }
 
     return $errors;
