@@ -1,29 +1,32 @@
 <?php
 
-class LCF_AJAX {
+class LAGS_AJAX
+{
 
-    public function __construct() {
-        add_action('wp_ajax_lcf_submit_form', [$this, 'handle']);
-        add_action('wp_ajax_nopriv_lcf_submit_form', [$this, 'handle']);
+    public function __construct()
+    {
+        add_action('wp_ajax_lags_submit_form', [$this, 'handle']);
+        add_action('wp_ajax_nopriv_lags_submit_form', [$this, 'handle']);
     }
 
-    public function handle() {
-        check_ajax_referer('lcf_form_action', 'lcf_nonce');
+    public function handle()
+    {
+        check_ajax_referer('lags_form_action', 'lags_nonce');
 
         $name = sanitize_text_field($_POST['name']);
         $email = sanitize_email($_POST['email']);
         $message = sanitize_textarea_field($_POST['message']);
 
-        $errors = LCF_Validation::validate($name, $email, $message);
+        $errors = LAGS_Validation::validate($name, $email, $message);
 
         if (!empty($errors)) {
             wp_send_json_error([
                 'message' => 'Please fix the errors below.',
                 'errors' => $errors
-                ]);
+            ]);
         }
 
-        $insert_id = LCF_DB::insert([
+        $insert_id = LAGS_DB::insert([
             'name' => $name,
             'email' => $email,
             'message' => $message,
@@ -31,7 +34,7 @@ class LCF_AJAX {
         if (!$insert_id) {
             wp_send_json_error(['message' => 'Failed to save message. Please try again.']);
         }
-        $sent = LCF_Mailer::send($name, $email, $message);
+        $sent = LAGS_Mailer::send($name, $email, $message);
         if (!$sent) {
             wp_send_json_error(['message' => 'Failed to send message. Please try again.']);
         }

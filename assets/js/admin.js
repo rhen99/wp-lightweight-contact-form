@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
   const selectAll = document.querySelector("#select-all");
-  const bulkActionForm = document.querySelector("#lcf-messages-form");
+  const bulkActionForm = document.querySelector("#lags-messages-form");
 
   bulkActionForm?.addEventListener("submit", (event) => {
     const selectedAction = document.querySelector("[name='bulk_action']").value;

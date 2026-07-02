@@ -1,11 +1,11 @@
 <?php
 
-class LCF_Shortcode
+class LAGS_Shortcode
 {
 
     public function __construct()
     {
-        add_shortcode('lightweight_contact_form', [$this, 'render']);
+        add_shortcode('lags_contact_lite', [$this, 'render']);
     }
 
     public function render()
@@ -31,9 +31,9 @@ class LCF_Shortcode
                 <textarea name="message"></textarea>
                 <small class="error-message" data-field="message"></small>
             </div>
-            <?php wp_nonce_field('lcf_form_action', 'lcf_nonce'); ?>
+            <?php wp_nonce_field('lags_form_action', 'lags_nonce'); ?>
 
-            <button name="lcf_submit" type="submit">Send Message</button>
+            <button name="lags_submit" type="submit">Send Message</button>
         </form>
 
 <?php

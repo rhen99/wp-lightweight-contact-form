@@ -1,6 +1,6 @@
 <?php
 
-class LCF_DB
+class LAGS_DB
 {
 
     public function __construct()
@@ -12,7 +12,7 @@ class LCF_DB
     {
         global $wpdb;
 
-        $table = $wpdb->prefix . 'lcf_messages';
+        $table = $wpdb->prefix . 'lags_messages';
         $charset = $wpdb->get_charset_collate();
 
         $sql = "CREATE TABLE $table (
@@ -32,7 +32,7 @@ class LCF_DB
         global $wpdb;
 
         $result = $wpdb->insert(
-            $wpdb->prefix . 'lcf_messages',
+            $wpdb->prefix . 'lags_messages',
             $data
         );
 
@@ -40,10 +40,10 @@ class LCF_DB
     }
     public static function get_messages()
     {
-        
+
         global $wpdb;
 
-        $table = $wpdb->prefix . 'lcf_messages';
+        $table = $wpdb->prefix . 'lags_messages';
         $current_page = isset($_GET['paged']) ? max(1, intval($_GET['paged'])) : 1;
         $messages_per_page = 10;
         $total_messages = $wpdb->get_var("SELECT COUNT(*) FROM $table");
@@ -64,7 +64,7 @@ class LCF_DB
     {
         global $wpdb;
 
-        $table = $wpdb->prefix . 'lcf_messages';
+        $table = $wpdb->prefix . 'lags_messages';
         $ids_placeholder = implode(',', array_fill(0, count($ids), '%d'));
 
         return $wpdb->query(
@@ -78,7 +78,7 @@ class LCF_DB
     {
         global $wpdb;
 
-        $table = $wpdb->prefix . 'lcf_messages';
+        $table = $wpdb->prefix . 'lags_messages';
 
         return $wpdb->delete(
             $table,

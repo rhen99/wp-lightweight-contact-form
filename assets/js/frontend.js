@@ -22,12 +22,12 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     const formData = new FormData(form);
-    formData.append("action", "lcf_submit_form");
+    formData.append("action", "lags_submit_form");
 
     submitButton.disabled = true;
     submitButton.textContent = "Sending...";
     submitButton.classList.add("loading");
-    fetch(lcf_ajax.ajax_url, {
+    fetch(lags_ajax.ajax_url, {
       method: "POST",
       body: formData,
     })

@@ -1,6 +1,6 @@
 <?php
 
-class LCF_Admin
+class LAGS_Admin
 {
 
     public function __construct()
@@ -16,7 +16,7 @@ class LCF_Admin
             'Contact Messages',
             'Contact Form',
             'manage_options',
-            'lcf-messages',
+            'lags-messages',
             [$this, 'render_page'],
             'dashicons-email',
             25
@@ -25,14 +25,14 @@ class LCF_Admin
 
     public function render_page()
     {
-        $messages_data = LCF_DB::get_messages();
+        $messages_data = LAGS_DB::get_messages();
         $messages = $messages_data['messages'];
         $total_pages = $messages_data['total_pages'];
         $current_page = isset($_GET['paged']) ? max(1, intval($_GET['paged'])) : 1;
         ob_start();
 ?>
-        <form method="post" id="lcf-messages-form">
-            <?php wp_nonce_field('lcf_bulk_action', 'lcf_bulk_nonce'); ?>
+        <form method="post" id="lags-messages-form">
+            <?php wp_nonce_field('lags_bulk_action', 'lags_bulk_nonce'); ?>
 
             <div class="wrap">
                 <h1 class="wp-heading-inline">Contact Messages</h1>
@@ -86,8 +86,8 @@ class LCF_Admin
                                     <td>
                                         <?php
                                         $delete_url = wp_nonce_url(
-                                            admin_url('admin.php?page=lcf-messages&action=delete&id=' . $msg->id),
-                                            'lcf_delete_message_' . $msg->id
+                                            admin_url('admin.php?page=lags-messages&action=delete&id=' . $msg->id),
+                                            'lags_delete_message_' . $msg->id
                                         );
                                         ?>
                                         <a href="<?php echo esc_url($delete_url); ?>"
@@ -104,7 +104,7 @@ class LCF_Admin
                             <?php
                             echo paginate_links([
                                 'base' => add_query_arg([
-                                    'page' => sanitize_text_field($_GET['page'] ?? 'lcf-messages'),
+                                    'page' => sanitize_text_field($_GET['page'] ?? 'lags-messages'),
                                     'paged' => '%#%'
                                 ], admin_url('admin.php')),
                                 'format' => '',
@@ -128,7 +128,7 @@ class LCF_Admin
             return;
         }
 
-        if (!wp_verify_nonce($_POST['lcf_bulk_nonce'], 'lcf_bulk_action')) {
+        if (!wp_verify_nonce($_POST['lags_bulk_nonce'], 'lags_bulk_action')) {
             return;
         };
 
@@ -136,7 +136,7 @@ class LCF_Admin
         $ids = array_map('intval', $_POST['ids']);
 
         if ($action === 'delete' && !empty($ids)) {
-            LCF_DB::bulk_delete($ids);
+            LAGS_DB::bulk_delete($ids);
         }
     }
     public function handle_delete_action()
@@ -146,12 +146,12 @@ class LCF_Admin
         }
 
         $id = intval($_GET['id']);
-        $nonce_action = 'lcf_delete_message_' . $id;
+        $nonce_action = 'lags_delete_message_' . $id;
 
         if (!wp_verify_nonce($_GET['_wpnonce'], $nonce_action)) {
             return;
         }
 
-        LCF_DB::delete($id);
+        LAGS_DB::delete($id);
     }
 }
